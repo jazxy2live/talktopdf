@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+venv/
+.venv/
+backend/venv/
+__pycache__/
+*.pyc
+
+# Environment
+.env
+.env.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Test files
+*.pdf
+!test_document.pdf
+
+# Logs
+*.log

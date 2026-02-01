@@ -14,8 +14,17 @@ import os
 import re
 from difflib import SequenceMatcher
 
-app = Flask(__name__)
+# Serve static files from the parent directory (frontend)
+app = Flask(__name__, static_folder="../", static_url_path="/")
 CORS(app)
+
+@app.route('/')
+def serve_index():
+    return send_file('../index.html')
+
+@app.route('/<path:path>')
+def serve_static(path):
+    return send_file(f'../{path}')
 
 # Configure Gemini - Using 1.5 Flash for stability, or 2.0 Flash for latest
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "AIzaSyDgxn7KP-Wuc3sSTqPu0sFoe-5W3jSbYUA")

@@ -7,7 +7,11 @@
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
 // Backend URL
-const BACKEND_URL = 'http://localhost:5001';
+// Backend URL - uses CONFIG from config.js
+// Fallback to relative path '' which is safe for production (same-origin)
+const BACKEND_URL = (typeof CONFIG !== 'undefined' && CONFIG.BACKEND_URL !== undefined)
+    ? CONFIG.BACKEND_URL
+    : '';
 
 class VoiceDocApp {
     constructor() {
@@ -490,7 +494,7 @@ class VoiceDocApp {
 
                 // Return to document view
                 this.showScreen('doc');
-                
+
                 // Auto-save the NEW edited version
                 this.autoSave();
 
